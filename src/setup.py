@@ -16,5 +16,6 @@ setup(
       author_email='sdejonckheere@sequoia-ge.ch',
       packages=['seq_common',
                 'seq_common.db',
-                'seq_common.utils'],
+                'seq_common.utils',
+                'seq_common.decorators'],
 )
