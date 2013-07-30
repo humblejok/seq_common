@@ -8,8 +8,14 @@ def log_start_end_email(addressees):
 
     def caller(f):
         def wrapper(*args, **kwargs):
-            emailing.send_text_email(addressees, f.__name__ + ' started at ' + str(datetime.datetime.today()) + ' on ' + socket.gethostname(), '')
+            try:
+                emailing.send_text_email(addressees, f.__name__ + ' started at ' + str(datetime.datetime.today()) + ' on ' + socket.gethostname(), '')
+            except:
+                None
             f(*args, **kwargs)
-            emailing.send_text_email(addressees, f.__name__ + ' ended at ' + str(datetime.datetime.today()) + ' on ' + socket.gethostname(), '')
+            try:
+                emailing.send_text_email(addressees, f.__name__ + ' ended at ' + str(datetime.datetime.today()) + ' on ' + socket.gethostname(), '')
+            except:
+                None
         return wrapper
     return caller

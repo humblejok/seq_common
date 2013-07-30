@@ -155,3 +155,8 @@ def GetNextOccurrenceFromList( dtDate, oCol ):
 def Localize(dtDate):
     utc = pytz.UTC
     return utc.localize(dtDate)
+
+def epoch_time(date):
+    epoch = datetime.datetime.utcfromtimestamp(0)
+    delta = date - epoch
+    return int(delta.total_seconds() * 1000.0)
