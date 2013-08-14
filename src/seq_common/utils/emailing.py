@@ -6,7 +6,7 @@ Created on Jul 5, 2013
 from email.mime.text import MIMEText
 import smtplib
 
-SMTP_HOST = '192.168.9.15'
+SMTP_HOST = '192.168.9.16' # TODO Parameter
 SMTP_PORT = 25
 SMTP_SENDER = 'sequoia-log@sequoia-ge.com'
 SMTP_ADDRESSEES_SEPARATOR = ', '

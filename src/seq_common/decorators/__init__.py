@@ -12,10 +12,11 @@ def log_start_end_email(addressees):
                 emailing.send_text_email(addressees, f.__name__ + ' started at ' + str(datetime.datetime.today()) + ' on ' + socket.gethostname(), '')
             except:
                 None
-            f(*args, **kwargs)
+            result = f(*args, **kwargs)
             try:
                 emailing.send_text_email(addressees, f.__name__ + ' ended at ' + str(datetime.datetime.today()) + ' on ' + socket.gethostname(), '')
             except:
                 None
+            return result
         return wrapper
     return caller
