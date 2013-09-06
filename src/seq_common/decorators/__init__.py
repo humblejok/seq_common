@@ -8,13 +8,21 @@ def log_start_end_email(addressees):
 
     def caller(f):
         def wrapper(*args, **kwargs):
+            failed = None
+            result = None
             try:
-                emailing.send_text_email(addressees, f.__name__ + ' started at ' + str(datetime.datetime.today()) + ' on ' + socket.gethostname(), '')
+                emailing.send_text_email(addressees, '[' + socket.gethostname() + '] ' + f.__name__ + ' started at ' + str(datetime.datetime.today()), '')
             except:
                 None
-            result = f(*args, **kwargs)
             try:
-                emailing.send_text_email(addressees, f.__name__ + ' ended at ' + str(datetime.datetime.today()) + ' on ' + socket.gethostname(), '')
+                result = f(*args, **kwargs)
+            except Exception as e:
+                failed = e
+            try:
+                if failed==None:
+                    emailing.send_text_email(addressees, '[' + socket.gethostname() + '] ' + f.__name__ + ' ended at ' + str(datetime.datetime.today()), '')
+                else:
+                    emailing.send_text_email(addressees, '[' + socket.gethostname() + '] ' + f.__name__ + ' FAILED at ' + str(datetime.datetime.today()), str(e))
             except:
                 None
             return result
