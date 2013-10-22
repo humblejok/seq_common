@@ -95,6 +95,16 @@ def GetEndOfWeek( date ):
 
     return newDate
 
+def GetMidOfWeek( date ):
+    """
+    Get the last day of the same week than the specified date
+    """
+    newDate = date
+    while newDate.weekday() != 2:
+        newDate = AddDay( newDate, 1 )
+
+    return newDate
+
 def QuarterEnd( date ):
     """
     Get the last date of the quarter of the specified date

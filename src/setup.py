@@ -17,5 +17,6 @@ setup(
       packages=['seq_common',
                 'seq_common.db',
                 'seq_common.utils',
-                'seq_common.decorators'],
+                'seq_common.decorators',
+                'seq_common.network'],
 )
