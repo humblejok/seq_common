@@ -169,7 +169,7 @@ def Localize(dtDate):
 def from_epoch(delta):
     epoch = datetime.datetime.utcfromtimestamp(0)
     date = epoch + datetime.timedelta(seconds=delta/1000.0)
-    return datetime.datetime.utcfromtimestamp(date)
+    return date
 
 def epoch_time(date):
     epoch = datetime.datetime.utcfromtimestamp(0)
