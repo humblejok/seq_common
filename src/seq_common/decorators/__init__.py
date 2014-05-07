@@ -2,6 +2,7 @@ from seq_common.utils import emailing
 import datetime
 import sys
 import socket
+import traceback
 
 
 def log_start_end_email(addressees):
@@ -22,7 +23,8 @@ def log_start_end_email(addressees):
                 if failed==None:
                     emailing.send_text_email(addressees, '[' + socket.gethostname() + '] ' + f.__name__ + ' ended at ' + str(datetime.datetime.today()), '')
                 else:
-                    emailing.send_text_email(addressees, '[' + socket.gethostname() + '] ' + f.__name__ + ' FAILED at ' + str(datetime.datetime.today()), str(e))
+                    emailing.send_text_email(addressees, '[' + socket.gethostname() + '] ' + f.__name__ + ' FAILED at ' + str(datetime.datetime.today()), str(failed))
+                    traceback.print_exc()
             except:
                 None
             return result
