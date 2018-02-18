@@ -14,5 +14,8 @@ def my_import(name):
 
 def my_class_import(name):
     components = name.split('.')
-    module = __import__('.'.join(components[:(len(components)-1)]), fromlist=components[-1:])
-    return getattr(module,components[-1])
+    module = __import__('.'.join(components[:(len(components)-1)]), fromlist=components[-1])
+    try:
+        return getattr(module, components[-1])
+    except:
+        return my_import(name)
